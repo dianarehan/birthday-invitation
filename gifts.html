@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f7edf1" />
+  <meta name="theme-color" content="#fbf1de" />
   <title>Gift Ideas · Diana's Birthday</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,18 +36,17 @@
     .gift-list li {
       counter-increment: g;
       position: relative;
-      display: flex; align-items: baseline; gap: 16px;
-      padding: 18px 6px;
-      font-family: var(--cormorant); font-weight: 500;
-      font-size: clamp(1.15rem, 5.5vw, 1.5rem);
+      padding: 18px 6px 18px 44px;
+      font-family: var(--cormorant); font-weight: 600;
+      font-size: clamp(1.2rem, 5.8vw, 1.6rem);
       color: var(--ink);
-      border-bottom: 1px solid rgba(192, 125, 151, .28);
+      border-bottom: 1px solid rgba(221, 90, 82, .3);
     }
     .gift-list li::before {
       content: counter(g, decimal-leading-zero);
+      position: absolute; left: 6px; top: 22px;
       font-family: var(--body); font-weight: 300;
       font-size: .8rem; letter-spacing: .1em; color: var(--accent);
-      min-width: 1.8em;
     }
     .gift-list li small {
       display: block; font-family: var(--body); font-weight: 300;
@@ -58,11 +57,11 @@
       margin-top: 2.4em; text-decoration: none;
       font-family: var(--body); font-weight: 400;
       letter-spacing: .22em; text-transform: uppercase; font-size: .76rem;
-      color: var(--accent-deep);
-      padding: .8em 1.8em; border: 1px solid var(--accent); border-radius: 999px;
-      transition: background .3s, color .3s;
+      color: #fff; background: var(--coral);
+      padding: .8em 1.8em; border-radius: 999px;
+      transition: background .3s;
     }
-    .back-link:hover { background: var(--accent); color: #fff; }
+    .back-link:hover { background: var(--coral-deep); }
   </style>
 </head>
 <body>
@@ -79,8 +78,9 @@
       <li>Silver necklaces</li>
       <li>Vanilla scented candle</li>
       <li>Headphones</li>
-      <li>Berry Your Frizz Hair Juice<small>Not Your Mother's &middot; Naked</small></li>
+      <li>Shoulder bag<small>anything but burgundy</small></li>
       <li>Centella Ampoule</li>
+      <li>Dr. Baby matcha powder</li>
     </ul>
 
     <a class="back-link" href="index.html">&larr; Back to invite</a>
@@ -88,7 +88,7 @@
 
   <script>
     // soft floating petals to match the invite
-    const COLORS = ["var(--blush)","var(--lilac)","var(--sage)","var(--peach)","var(--accent)"];
+    const COLORS = ["var(--pink)","var(--yellow)","var(--coral)","var(--orange)","var(--blue)"];
     const decor = document.getElementById("decor");
     for (let i = 0; i < 16; i++) {
       const s = document.createElement("span");
