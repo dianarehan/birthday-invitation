@@ -787,8 +787,8 @@ body[data-stage="main"] .gift-link { animation-delay: .72s; }
 }
 
 @keyframes sway {
-  0%, 100% { transform: rotate(-10deg); }
-  50% { transform: rotate(10deg); }
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
 }
 
 @keyframes ringPulse {
