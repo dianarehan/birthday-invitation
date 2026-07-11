@@ -4,6 +4,7 @@ const body = document.body;
 const song = document.getElementById("song");
 const openBtn = document.getElementById("openBtn");
 const helloImg = document.getElementById("helloImg");
+const envelopeName = document.getElementById("envelopeName");
 const decor = document.getElementById("decor");
 const soundToggle = document.getElementById("soundToggle");
 const replayBtn = document.getElementById("replayBtn");
@@ -12,11 +13,24 @@ const replayBtn = document.getElementById("replayBtn");
 const T = {
   hello: 14300,    // "HELLO?" bubble
   invited: 15000,  // stomp lands on the beat
-  main: 16400,     // ~0.6s hold after the invited landing, then move to the card
+  main: 16400,     // card reveal after the invited beat
 };
+const ENVELOPE_BEAT = 1180;
+const DEFAULT_ENVELOPE_NAME = "from Diana";
 let timers = [];
 const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+function getEnvelopeCopy() {
+  const params = new URLSearchParams(window.location.search);
+  const rawName = params.get("for") || params.get("name") || params.get("guest");
+  const cleanName = rawName ? rawName.trim().replace(/\s+/g, " ") : "";
+  return cleanName ? `for ${cleanName}` : DEFAULT_ENVELOPE_NAME;
+}
+
+if (envelopeName) {
+  envelopeName.textContent = getEnvelopeCopy();
+}
 
 /* floating decorations - rising petals + softly twinkling sparkles */
 const COLORS = ["var(--pink)", "var(--yellow)", "var(--coral)", "var(--orange)", "var(--blue)"];
@@ -59,7 +73,8 @@ function play() {
   song.currentTime = 0;
   song.play().catch(() => { /* blocked or missing - visuals still run */ });
 
-  body.dataset.stage = "phone";
+  body.dataset.stage = "envelope";
+  at(ENVELOPE_BEAT, () => { body.dataset.stage = "phone"; });
   at(T.hello, () => helloImg.classList.add("show"));
   at(T.invited, () => { body.dataset.stage = "invited"; });
   at(T.main, () => {
@@ -70,9 +85,9 @@ function play() {
 
 openBtn.addEventListener("click", play);
 
-/* deep-link for previewing a stage directly: #phone / #hello / #invited / #main */
+/* deep-link for previewing a stage directly: #envelope / #phone / #hello / #invited / #main */
 const jump = location.hash.replace("#", "");
-if (["phone", "hello", "invited", "main"].includes(jump)) {
+if (["envelope", "phone", "hello", "invited", "main"].includes(jump)) {
   body.dataset.stage = jump === "hello" ? "phone" : jump;
   if (jump === "hello") helloImg.classList.add("show");
   if (jump === "main") spawnDecor();
