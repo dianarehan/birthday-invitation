@@ -16,8 +16,14 @@
   <!-- PinkPantheress · Illegal (Ringtone ver.) — rings ~13s, beat kicks ~14s -->
   <audio id="song" src="Music/illegal-ringtone.mp3" preload="auto"></audio>
 
-  <!-- soft floating petals -->
+  <!-- harlequin "wall" behind the framed card (main stage only) -->
+  <div class="wall" aria-hidden="true"></div>
+
+  <!-- soft floating petals / sparkles -->
   <div class="decor" id="decor" aria-hidden="true"></div>
+
+  <!-- barely-there film grain for warmth -->
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- ===== Dangling phone — appears only after tap, while it rings ===== -->
   <div class="phone-hang" id="phoneHang" aria-hidden="true">
@@ -53,20 +59,32 @@
 
   <!-- ============ STAGE 4 · THE INVITATION ============ -->
   <section class="stage stage-main" id="stage-main" aria-hidden="true">
-    <article class="card" id="card">
+    <article class="card card--painted-frame" id="card">
       <div class="card__inner">
-        <p class="card__eyebrow reveal">Happy Birthday</p>
-        <h2 class="card__name reveal">Diana</h2>
+        <h2 class="card__hi reveal">Happy Birthday</h2>
+        <p class="card__name reveal">Diana</p>
 
-        <div class="card__details reveal">
-          <p><span class="lbl">Where</span>Home</p>
-          <p><span class="lbl">When</span>17 &middot; 07 &middot; 2026</p>
+        <div class="card__meta reveal">
+          <p class="meta"><span class="meta__lbl">Where</span><span class="meta__val">Home</span></p>
+          <p class="meta"><span class="meta__lbl">When</span><span class="meta__val">17 &middot; 07 &middot; 2026</span></p>
         </div>
 
         <div class="card__rules reveal">
           <p class="card__rules-title">the two little rules</p>
-          <p>bring a gift</p>
-          <p>wear pastel colours</p>
+          <p class="rule">
+            <svg class="bt bt-bloom" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="currentColor"><circle cx="12" cy="5" r="4.2"/><circle cx="19" cy="10" r="4.2"/><circle cx="16.2" cy="18" r="4.2"/><circle cx="7.8" cy="18" r="4.2"/><circle cx="5" cy="10" r="4.2"/></g>
+              <circle cx="12" cy="12" r="3.4" fill="#fdf6ea"/>
+            </svg>
+            bring a gift
+          </p>
+          <p class="rule">
+            <svg class="bt bt-bloom" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="currentColor"><circle cx="12" cy="5" r="4.2"/><circle cx="19" cy="10" r="4.2"/><circle cx="16.2" cy="18" r="4.2"/><circle cx="7.8" cy="18" r="4.2"/><circle cx="5" cy="10" r="4.2"/></g>
+              <circle cx="12" cy="12" r="3.4" fill="#fdf6ea"/>
+            </svg>
+            wear pastel colours
+          </p>
         </div>
 
         <a class="gift-link reveal" href="gifts.html">Gift ideas &nbsp;&rarr;</a>

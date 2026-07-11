@@ -1,18 +1,19 @@
 /* ===== Diana · warm harlequin birthday invitation ===== */
 
 :root {
-  /* palette pulled from the frame */
-  --orange:   #e9661f;
-  --yellow:   #f4b52f;
-  --pink:     #f2a7c0;
-  --pink-soft:#f7c9d8;
-  --coral:    #dd5a52;
-  --coral-deep:#c0463f;
-  --cream:    #fbf1de;
-  --blue:     #aecbe8;
-  --ink:      #7a3b2e;   /* warm espresso text */
-  --ink-soft: #b47c66;
-  --accent:   #dd5a52;
+  /* softer, more pastel palette (still warm, not washed out) */
+  --orange:   #ee8a5f;
+  --yellow:   #f7c86e;
+  --pink:     #f6bcd1;
+  --pink-soft:#fad4e0;
+  --coral:    #e58379;
+  --coral-deep:#cf6258;   /* headline / accents */
+  --cream:    #fdf6ea;
+  --blue:     #bcd2e8;
+  --ink:      #67432f;    /* warm espresso body text */
+  --ink-soft: #a9836b;
+  --caramel:  #c67a48;    /* prominent labels */
+  --accent:   #e58379;
 
   --serif:   "Playfair Display", Georgia, serif;
   --body:    "Jost", system-ui, sans-serif;
@@ -33,10 +34,18 @@ body {
   position: relative;
   background-color: var(--cream);
   background-image:
-    radial-gradient(90% 60% at 12% 0%,   rgba(242,167,192,.30), transparent 60%),
-    radial-gradient(90% 60% at 90% 6%,   rgba(174,203,232,.30), transparent 60%),
-    radial-gradient(100% 70% at 88% 100%,rgba(244,181,47,.22),  transparent 60%),
-    radial-gradient(100% 70% at 8% 100%, rgba(233,102,31,.16),  transparent 60%);
+    radial-gradient(90% 60% at 12% 0%,   rgba(246,188,209,.32), transparent 60%),
+    radial-gradient(90% 60% at 90% 6%,   rgba(188,210,232,.30), transparent 60%),
+    radial-gradient(100% 70% at 88% 100%,rgba(247,200,110,.24), transparent 60%),
+    radial-gradient(100% 70% at 8% 100%, rgba(238,138,95,.16),  transparent 60%);
+}
+
+/* barely-there grain — adds warmth, kept low enough to never hurt readability */
+.grain {
+  position: fixed; inset: 0; z-index: 7; pointer-events: none;
+  opacity: .05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 /* ---------- stage system ---------- */
@@ -109,84 +118,163 @@ body[data-stage="phone"] .ring-wave i:nth-child(3) { animation-delay: .858s; }
 
 /* ---------- stage 3 · you're invited (hard stomp impact) ---------- */
 .invited { text-align: center; }
-body[data-stage="invited"] .invited { animation: shake .4s .16s cubic-bezier(.36,.07,.19,.97); }
+/* whole block jolts vertically on impact (no left-right sway) */
+body[data-stage="invited"] .invited { animation: shake .46s .38s cubic-bezier(.36,.07,.19,.97) both; }
 .invited__small {
   display: block; font-family: var(--script);
   font-size: clamp(2.4rem, 13vw, 3.8rem); color: var(--coral);
-  transform: rotate(-5deg); opacity: 0; animation: fadeUp .3s ease forwards;
+  transform: rotate(-5deg); opacity: 0;
 }
 .invited__big {
   display: block; font-family: var(--serif); font-weight: 700;
   font-size: clamp(3.6rem, 23vw, 7.6rem); line-height: .9; color: var(--ink);
-  opacity: 0; transform: scale(2.6); animation: stomp .42s .1s cubic-bezier(.2,.95,.25,1) forwards;
+  opacity: 0;
 }
-.invited__rule { display: block; width: 0; height: 3px; margin: 1.2em auto 0;
-  background: var(--orange); animation: growLine .3s ease .42s forwards; }
+.invited__rule { display: block; width: 0; height: 3px; margin: 1.2em auto 0; background: var(--orange); }
 
-/* ---------- stage 4 · the framed card (generated SVG frame) ---------- */
-.stage-main {
-  align-content: center;
-  /* harlequin-diamond "wall" behind the frame */
-  background-color: #f3e8cf;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cpolygon points='42,0 84,42 42,84 0,42' fill='%23aecbe8' fill-opacity='0.55'/%3E%3C/svg%3E");
+/* animations fire only when the stage appears (and re-fire on replay) */
+body[data-stage="invited"] .invited__small { animation: fadeUp .3s ease forwards; }
+body[data-stage="invited"] .invited__big { animation: drophard .58s .1s forwards; }
+body[data-stage="invited"] .invited__rule { animation: growLine .3s ease .42s forwards; }
+
+/* softened harlequin-diamond "wall" — its own layer so sparkles can float above it */
+.wall {
+  position: fixed; inset: 0; z-index: 0; opacity: 0;
+  transition: opacity .8s ease; pointer-events: none;
+  background-color: #f4ead6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cpolygon points='42,0 84,42 42,84 0,42' fill='%23bcd2e8' fill-opacity='0.5'/%3E%3C/svg%3E");
   background-size: 84px 84px;
 }
+body[data-stage="main"] .wall { opacity: 1; }
+
+/* ---------- stage 4 · the framed card ---------- */
+.stage-main { align-content: center; justify-items: center; }
 .card {
   position: relative;
-  width: min(94vw, 440px);
-  aspect-ratio: 500 / 660;             /* matches the generated frame */
-  max-height: 94dvh;
-  background: url("assets/frame-gen.svg") center / contain no-repeat;
+  width: min(92vw, var(--frame-max-width, 430px));
+  margin: 0 auto;
+  aspect-ratio: var(--frame-ratio, 500 / 660);
+  max-height: min(90dvh, var(--frame-max-height, 720px));
+  padding:
+    var(--frame-pad-top, 11%)
+    var(--frame-pad-right, 15%)
+    var(--frame-pad-bottom, 11%)
+    var(--frame-pad-left, 15%);
+  background: var(--frame-bg, url("assets/frame-gen.svg")) center / contain no-repeat;
   container-type: size;
-  display: grid; place-items: center;
+  isolation: isolate;
+  display: flex; align-items: center; justify-content: center;
   animation: cardPop .9s cubic-bezier(.2,1.15,.4,1) both;
-  filter: drop-shadow(0 24px 40px rgba(150, 80, 60, .3));
+  filter: drop-shadow(0 22px 38px rgba(150, 90, 70, .28));
 }
-.card__inner { width: 64%; text-align: center; }   /* clean cream window (inset ~17%) */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 9% 10%;
+  border-radius: 32px;
+  background:
+    radial-gradient(72% 64% at 50% 30%, rgba(247, 200, 110, .2), transparent 74%),
+    radial-gradient(70% 72% at 40% 42%, rgba(246, 188, 209, .18), transparent 78%);
+  filter: blur(18px);
+  opacity: 0;
+  z-index: -1;
+}
+/* Keep both frame variants available; switch the class in index.html to compare them. */
+.card--generated-frame {
+  --frame-max-width: 430px;
+  --frame-max-height: 720px;
+  --frame-ratio: 500 / 660;
+  --frame-pad-top: 11%;
+  --frame-pad-right: 15%;
+  --frame-pad-bottom: 11%;
+  --frame-pad-left: 15%;
+  --frame-bg: url("assets/frame-gen.svg");
+  --card-headline: var(--coral-deep);
+  --card-name: var(--ink);
+  --card-copy: var(--ink);
+  --card-label: var(--caramel);
+  --card-button: var(--coral);
+  --card-button-hover: var(--coral-deep);
+  --card-button-shadow: rgba(207, 98, 88, .32);
+}
+.card--painted-frame {
+  --frame-max-width: 412px;
+  --frame-max-height: 724px;
+  --frame-ratio: 386 / 550;
+  --frame-pad-top: 11.5%;
+  --frame-pad-right: 14.5%;
+  --frame-pad-bottom: 11.5%;
+  --frame-pad-left: 14.5%;
+  --frame-bg: url("assets/frame-botanical.svg");
+  /* Original uploaded PNG test kept here for reference: url("assets/frames/image.png") */
+  --card-headline: #cb6a76;
+  --card-name: #477661;
+  --card-copy: #5f4439;
+  --card-label: #bf6573;
+  --card-button: #d8767c;
+  --card-button-hover: #cb676f;
+  --card-button-shadow: rgba(203, 103, 111, .26);
+}
+.card--painted-frame::before { opacity: .95; }
+.card__inner {
+  width: 100%; text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+  margin: 0 auto;
+}
 
-.card__eyebrow { font-family: var(--script); font-size: 5.4cqw; color: var(--coral); margin: 0; line-height: 1; }
+/* headline hierarchy */
+.card__hi {
+  font-family: var(--script); font-weight: 400;
+  letter-spacing: .01em; font-size: clamp(2.45rem, 7.8vw, 3.35rem); line-height: .92;
+  color: var(--card-headline); margin: 0 0 .16em;
+}
 .card__name {
-  font-family: var(--serif); font-weight: 700; font-size: 11cqw; line-height: 1;
-  margin: 0 0 .22em; color: var(--ink);
-}
-.card__details { margin: 0 0 .5em; }
-.card__details p { font-family: var(--cormorant); font-weight: 600; font-size: 4.2cqw; line-height: 1.15; margin: .12em 0; color: var(--ink); }
-.card__details .lbl {
-  display: block; font-family: var(--body); font-weight: 300;
-  letter-spacing: .24em; text-transform: uppercase; font-size: 1.9cqw;
-  color: var(--ink-soft); margin-bottom: 0;
+  font-family: var(--serif); font-size: clamp(3.9rem, 11vw, 5rem); font-weight: 700; line-height: .88;
+  color: var(--card-name); margin: 0 0 .42em;
 }
 
-/* rules block — new font + a bit bigger */
-.card__rules { margin-bottom: .55em; }
+/* Where / When — prominent */
+.card__meta { margin: 0 0 .88em; }
+.meta { display: flex; align-items: baseline; justify-content: center; gap: .55em; margin: .28em 0; }
+.meta__lbl {
+  font-family: var(--body); font-weight: 500; text-transform: uppercase;
+  letter-spacing: .2em; font-size: clamp(.72rem, 2.3vw, .92rem); color: var(--card-label);
+}
+.meta__val { font-family: var(--cormorant); font-weight: 600; font-size: clamp(1.45rem, 4.4vw, 2rem); color: var(--card-copy); line-height: 1; }
+
+/* rules — slightly smaller, with animated shape bullets */
+.card__rules { margin: 0 0 .4em; }
 .card__rules-title {
-  font-family: var(--body); font-weight: 500;
-  letter-spacing: .16em; text-transform: uppercase; font-size: 2cqw;
-  color: var(--coral-deep); margin: 0 0 .22em;
+  font-family: var(--body); font-weight: 500; text-transform: uppercase;
+  letter-spacing: .18em; font-size: clamp(.62rem, 1.95vw, .78rem); color: var(--card-label); margin: 0 0 .5em;
 }
-.card__rules p {
-  font-family: var(--serif); font-weight: 500; font-style: italic;
-  font-size: 4.8cqw; line-height: 1.12; margin: .04em 0; color: var(--ink);
+.rule {
+  display: flex; align-items: center; justify-content: center; gap: .5em;
+  font-family: var(--cormorant); font-weight: 600; font-style: italic;
+  font-size: clamp(1.08rem, 3.6vw, 1.38rem); line-height: 1.1; margin: .26em 0; color: var(--card-copy);
 }
+.bt { width: clamp(.8rem, 2.8vw, 1.05rem); height: clamp(.8rem, 2.8vw, 1.05rem); flex: 0 0 auto; transform-origin: center; }
+.bt-bloom  { color: var(--card-label); animation: breathe 3.4s ease-in-out infinite; }
 
 .gift-link {
   display: inline-block; text-decoration: none;
   font-family: var(--body); font-weight: 500;
-  letter-spacing: .16em; text-transform: uppercase; font-size: 2.5cqw;
-  color: #fff; background: var(--coral);
-  padding: .6em 1.35em; border-radius: 999px; margin-top: .15em;
+  letter-spacing: .16em; text-transform: uppercase; font-size: clamp(.78rem, 2.35vw, .96rem);
+  color: #fff; background: var(--card-button);
+  padding: .78em 1.8em; border-radius: 999px; margin-top: 1.85em;
+  box-shadow: 0 6px 14px var(--card-button-shadow);
   transition: background .3s, transform .15s;
 }
-.gift-link:hover { background: var(--coral-deep); }
+.gift-link:hover { background: var(--card-button-hover); }
 .gift-link:active { transform: scale(.95); }
 
 /* staggered reveal */
 .reveal { opacity: 0; transform: translateY(12px); }
 body[data-stage="main"] .reveal { animation: fadeUp .8s ease forwards; }
-body[data-stage="main"] .card__name    { animation-delay: .16s; }
-body[data-stage="main"] .card__details { animation-delay: .34s; }
-body[data-stage="main"] .card__rules   { animation-delay: .54s; }
-body[data-stage="main"] .gift-link      { animation-delay: .78s; }
+body[data-stage="main"] .card__name  { animation-delay: .14s; }
+body[data-stage="main"] .card__meta  { animation-delay: .3s; }
+body[data-stage="main"] .card__rules { animation-delay: .5s; }
+body[data-stage="main"] .gift-link   { animation-delay: .72s; }
 
 /* corner controls */
 .sound-toggle, .replay {
@@ -200,14 +288,23 @@ body[data-stage="main"] .gift-link      { animation-delay: .78s; }
 .sound-toggle { left: 16px; width: 44px; height: 44px; font-size: 1.1rem; }
 .replay { right: 16px; height: 44px; padding: 0 18px; letter-spacing: .2em; text-transform: uppercase; font-size: .72rem; }
 
-/* ---------- floating petals ---------- */
+/* ---------- floating decorations (petals + sparkles) ---------- */
 .decor { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.decor span {
+/* rising soft petals */
+.decor .petal {
   position: absolute; bottom: -30px;
   width: var(--sz, 14px); height: var(--sz, 14px);
   border-radius: 60% 40% 55% 45%;
   background: var(--c, var(--pink)); opacity: var(--op, .5); filter: blur(.3px);
   animation: rise var(--dur, 11s) linear var(--delay, 0s) infinite;
+}
+/* gently twinkling sparkles scattered around the composition */
+.decor .spark {
+  position: absolute;
+  width: var(--sz, 14px); height: var(--sz, 14px);
+  background: var(--c, var(--yellow));
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  animation: twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
 }
 
 /* ---------- keyframes ---------- */
@@ -223,20 +320,34 @@ body[data-stage="main"] .gift-link      { animation-delay: .78s; }
   60%  { opacity: 1; transform: scale(1.06); }
   100% { opacity: 1; transform: scale(1); }
 }
-@keyframes stomp {
-  0%   { opacity: 0; transform: scale(2.6); filter: blur(4px); }
-  50%  { opacity: 1; transform: scale(.88); filter: blur(0); }
-  72%  { transform: scale(1.06); }
-  88%  { transform: scale(.98); }
-  100% { opacity: 1; transform: scale(1); }
+/* heavy fall: accelerates down from above, slams, small settle */
+@keyframes drophard {
+  0%   { opacity: 0; transform: translateY(-52vh) scale(1.28); filter: blur(2px);
+         animation-timing-function: cubic-bezier(.6,.02,.9,.28); }   /* gravity accel */
+  52%  { opacity: 1; transform: translateY(0) scale(1); filter: blur(0);
+         animation-timing-function: cubic-bezier(.3,0,.2,1); }       /* hard stop */
+  66%  { opacity: 1; transform: translateY(-14px) scale(1.015); }    /* rebound up */
+  80%  { opacity: 1; transform: translateY(0) scale(1); }
+  90%  { opacity: 1; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
+/* impact tremor — vertical only, no left-right */
 @keyframes shake {
-  0%,100% { transform: translate(0,0); }
-  15% { transform: translate(-12px, 4px); } 30% { transform: translate(11px, -3px); }
-  45% { transform: translate(-8px, 2px); }  60% { transform: translate(6px, -2px); }
-  80% { transform: translate(-3px, 0); }
+  0%   { transform: translateY(0); }
+  18%  { transform: translateY(9px); }
+  36%  { transform: translateY(-6px); }
+  54%  { transform: translateY(4px); }
+  72%  { transform: translateY(-2px); }
+  88%  { transform: translateY(1px); }
+  100% { transform: translateY(0); }
 }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 0%,100% { transform: scale(.86); } 50% { transform: scale(1.12); } }
+@keyframes twinkle {
+  0%,100% { transform: scale(.7) rotate(0); opacity: .25; }
+  50%     { transform: scale(1.1) rotate(45deg); opacity: .7; }
+}
 @keyframes growLine { to { width: 120px; } }
 @keyframes cardPop { 0% { opacity: 0; transform: scale(.9) translateY(16px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
 @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
