@@ -148,11 +148,26 @@ body[data-stage="invited"] .invited__rule { animation: growLine .3s ease .42s fo
 body[data-stage="main"] .wall { opacity: 1; }
 
 /* ---------- stage 4 · the framed card ---------- */
-.stage-main { align-content: center; justify-items: center; }
+.stage-main {
+  align-content: center;
+  justify-items: stretch;
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+}
+.card-shell {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
 .card {
   position: relative;
   width: min(92vw, var(--frame-max-width, 430px));
-  margin: 0 auto;
+  margin: 0;
   aspect-ratio: var(--frame-ratio, 500 / 660);
   max-height: min(90dvh, var(--frame-max-height, 720px));
   padding:
@@ -166,6 +181,7 @@ body[data-stage="main"] .wall { opacity: 1; }
   display: flex; align-items: center; justify-content: center;
   animation: cardPop .9s cubic-bezier(.2,1.15,.4,1) both;
   filter: drop-shadow(0 22px 38px rgba(150, 90, 70, .28));
+  pointer-events: auto;
 }
 .card::before {
   content: "";
@@ -199,12 +215,12 @@ body[data-stage="main"] .wall { opacity: 1; }
 }
 .card--painted-frame {
   --frame-max-width: 412px;
-  --frame-max-height: 724px;
-  --frame-ratio: 386 / 550;
-  --frame-pad-top: 11.5%;
-  --frame-pad-right: 14.5%;
-  --frame-pad-bottom: 11.5%;
-  --frame-pad-left: 14.5%;
+  --frame-max-height: 780px;
+  --frame-ratio: 386 / 590;
+  --frame-pad-top: 10.5%;
+  --frame-pad-right: 14.8%;
+  --frame-pad-bottom: 10.5%;
+  --frame-pad-left: 14.8%;
   --frame-bg: url("assets/frame-botanical.svg");
   /* Original uploaded PNG test kept here for reference: url("assets/frames/image.png") */
   --card-headline: #cb6a76;
@@ -226,16 +242,16 @@ body[data-stage="main"] .wall { opacity: 1; }
 .card__hi {
   font-family: var(--script); font-weight: 400;
   letter-spacing: .01em; font-size: clamp(2.45rem, 7.8vw, 3.35rem); line-height: .92;
-  color: var(--card-headline); margin: 0 0 .16em;
+  color: var(--card-headline); margin: 0 0 .22em;
 }
 .card__name {
   font-family: var(--serif); font-size: clamp(3.9rem, 11vw, 5rem); font-weight: 700; line-height: .88;
-  color: var(--card-name); margin: 0 0 .42em;
+  color: var(--card-name); margin: 0 0 .54em;
 }
 
 /* Where / When — prominent */
-.card__meta { margin: 0 0 .88em; }
-.meta { display: flex; align-items: baseline; justify-content: center; gap: .55em; margin: .28em 0; }
+.card__meta { margin: 0 0 1.18em; }
+.meta { display: flex; align-items: baseline; justify-content: center; gap: .55em; margin: .36em 0; }
 .meta__lbl {
   font-family: var(--body); font-weight: 500; text-transform: uppercase;
   letter-spacing: .2em; font-size: clamp(.72rem, 2.3vw, .92rem); color: var(--card-label);
@@ -243,15 +259,15 @@ body[data-stage="main"] .wall { opacity: 1; }
 .meta__val { font-family: var(--cormorant); font-weight: 600; font-size: clamp(1.45rem, 4.4vw, 2rem); color: var(--card-copy); line-height: 1; }
 
 /* rules — slightly smaller, with animated shape bullets */
-.card__rules { margin: 0 0 .4em; }
+.card__rules { margin: 0 0 .72em; }
 .card__rules-title {
   font-family: var(--body); font-weight: 500; text-transform: uppercase;
-  letter-spacing: .18em; font-size: clamp(.62rem, 1.95vw, .78rem); color: var(--card-label); margin: 0 0 .5em;
+  letter-spacing: .18em; font-size: clamp(.62rem, 1.95vw, .78rem); color: var(--card-label); margin: 0 0 .72em;
 }
 .rule {
   display: flex; align-items: center; justify-content: center; gap: .5em;
   font-family: var(--cormorant); font-weight: 600; font-style: italic;
-  font-size: clamp(1.08rem, 3.6vw, 1.38rem); line-height: 1.1; margin: .26em 0; color: var(--card-copy);
+  font-size: clamp(1.08rem, 3.6vw, 1.38rem); line-height: 1.1; margin: .34em 0; color: var(--card-copy);
 }
 .bt { width: clamp(.8rem, 2.8vw, 1.05rem); height: clamp(.8rem, 2.8vw, 1.05rem); flex: 0 0 auto; transform-origin: center; }
 .bt-bloom  { color: var(--card-label); animation: breathe 3.4s ease-in-out infinite; }
@@ -261,7 +277,7 @@ body[data-stage="main"] .wall { opacity: 1; }
   font-family: var(--body); font-weight: 500;
   letter-spacing: .16em; text-transform: uppercase; font-size: clamp(.78rem, 2.35vw, .96rem);
   color: #fff; background: var(--card-button);
-  padding: .78em 1.8em; border-radius: 999px; margin-top: 1.85em;
+  padding: .78em 1.8em; border-radius: 999px; margin-top: 2.15em;
   box-shadow: 0 6px 14px var(--card-button-shadow);
   transition: background .3s, transform .15s;
 }

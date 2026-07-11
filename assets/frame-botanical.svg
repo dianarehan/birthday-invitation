@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 386 550">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 386 590">
   <defs>
     <linearGradient id="paper" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fffefb"/>
@@ -16,92 +16,69 @@
     <filter id="paperShadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#d8c8b5" flood-opacity=".24"/>
     </filter>
+
     <g id="tickMark">
       <ellipse cx="0" cy="0" rx="4.4" ry="12.4" fill="#d84b68"/>
       <ellipse cx="0" cy="0" rx="3.1" ry="10.8" fill="#f2a4b8" opacity=".6"/>
     </g>
+
+    <g id="tickRow">
+      <use href="#tickMark" transform="translate(58 0)"/>
+      <use href="#tickMark" transform="translate(76 0)"/>
+      <use href="#tickMark" transform="translate(94 0)"/>
+      <use href="#tickMark" transform="translate(112 0)"/>
+      <use href="#tickMark" transform="translate(130 0)"/>
+      <use href="#tickMark" transform="translate(148 0)"/>
+      <use href="#tickMark" transform="translate(166 0)"/>
+      <use href="#tickMark" transform="translate(184 0)"/>
+      <use href="#tickMark" transform="translate(202 0)"/>
+      <use href="#tickMark" transform="translate(220 0)"/>
+      <use href="#tickMark" transform="translate(238 0)"/>
+      <use href="#tickMark" transform="translate(256 0)"/>
+      <use href="#tickMark" transform="translate(274 0)"/>
+      <use href="#tickMark" transform="translate(292 0)"/>
+      <use href="#tickMark" transform="translate(310 0)"/>
+      <use href="#tickMark" transform="translate(328 0)"/>
+    </g>
+
+    <g id="tickCol">
+      <use href="#tickMark" transform="translate(0 70) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 95) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 120) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 145) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 170) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 195) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 220) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 245) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 270) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 295) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 320) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 345) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 370) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 395) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 420) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 445) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 470) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 495) rotate(90)"/>
+      <use href="#tickMark" transform="translate(0 520) rotate(90)"/>
+    </g>
   </defs>
 
   <g opacity=".94">
-    <use href="#tickMark" transform="translate(58 26)"/>
-    <use href="#tickMark" transform="translate(76 26)"/>
-    <use href="#tickMark" transform="translate(94 26)"/>
-    <use href="#tickMark" transform="translate(112 26)"/>
-    <use href="#tickMark" transform="translate(130 26)"/>
-    <use href="#tickMark" transform="translate(148 26)"/>
-    <use href="#tickMark" transform="translate(166 26)"/>
-    <use href="#tickMark" transform="translate(184 26)"/>
-    <use href="#tickMark" transform="translate(202 26)"/>
-    <use href="#tickMark" transform="translate(220 26)"/>
-    <use href="#tickMark" transform="translate(238 26)"/>
-    <use href="#tickMark" transform="translate(256 26)"/>
-    <use href="#tickMark" transform="translate(274 26)"/>
-    <use href="#tickMark" transform="translate(292 26)"/>
-    <use href="#tickMark" transform="translate(310 26)"/>
-    <use href="#tickMark" transform="translate(328 26)"/>
-
-    <use href="#tickMark" transform="translate(58 524)"/>
-    <use href="#tickMark" transform="translate(76 524)"/>
-    <use href="#tickMark" transform="translate(94 524)"/>
-    <use href="#tickMark" transform="translate(112 524)"/>
-    <use href="#tickMark" transform="translate(130 524)"/>
-    <use href="#tickMark" transform="translate(148 524)"/>
-    <use href="#tickMark" transform="translate(166 524)"/>
-    <use href="#tickMark" transform="translate(184 524)"/>
-    <use href="#tickMark" transform="translate(202 524)"/>
-    <use href="#tickMark" transform="translate(220 524)"/>
-    <use href="#tickMark" transform="translate(238 524)"/>
-    <use href="#tickMark" transform="translate(256 524)"/>
-    <use href="#tickMark" transform="translate(274 524)"/>
-    <use href="#tickMark" transform="translate(292 524)"/>
-    <use href="#tickMark" transform="translate(310 524)"/>
-    <use href="#tickMark" transform="translate(328 524)"/>
-
-    <use href="#tickMark" transform="translate(24 70) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 95) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 120) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 145) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 170) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 195) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 220) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 245) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 270) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 295) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 320) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 345) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 370) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 395) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 420) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 445) rotate(90)"/>
-    <use href="#tickMark" transform="translate(24 470) rotate(90)"/>
-
-    <use href="#tickMark" transform="translate(362 70) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 95) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 120) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 145) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 170) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 195) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 220) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 245) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 270) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 295) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 320) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 345) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 370) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 395) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 420) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 445) rotate(90)"/>
-    <use href="#tickMark" transform="translate(362 470) rotate(90)"/>
+    <use href="#tickRow" transform="translate(0 26)"/>
+    <use href="#tickRow" transform="translate(0 564)"/>
+    <use href="#tickCol" transform="translate(24 0)"/>
+    <use href="#tickCol" transform="translate(362 0)"/>
   </g>
 
-  <rect x="57.1" y="61.7" width="271.8" height="426.6" rx="20" fill="url(#paper)" filter="url(#paperShadow)"/>
-  <ellipse cx="182" cy="176" rx="126" ry="140" fill="url(#washPink)"/>
-  <ellipse cx="208" cy="154" rx="118" ry="122" fill="url(#washGold)"/>
-  <ellipse cx="182" cy="410" rx="120" ry="116" fill="url(#washGold)" opacity=".24"/>
+  <rect x="57.1" y="61.7" width="271.8" height="466.6" rx="20" fill="url(#paper)" filter="url(#paperShadow)"/>
+  <ellipse cx="182" cy="188" rx="128" ry="146" fill="url(#washPink)"/>
+  <ellipse cx="208" cy="166" rx="118" ry="124" fill="url(#washGold)"/>
+  <ellipse cx="182" cy="452" rx="124" ry="122" fill="url(#washGold)" opacity=".24"/>
 
   <path
     d="M 60.0 60.0 A 14.6 14.6 0 0 0 89.2 60.0 A 14.6 14.6 0 0 0 118.5 60.0 A 14.6 14.6 0 0 0 147.7 60.0 A 14.6 14.6 0 0 0 176.9 60.0 A 14.6 14.6 0 0 0 206.2 60.0 A 14.6 14.6 0 0 0 235.4 60.0 A 14.6 14.6 0 0 0 264.6 60.0 A 14.6 14.6 0 0 0 293.8 60.0 A 14.6 14.6 0 0 0 323.1 60.0 A 14.6 14.6 0 0 0 352.3 60.0 A 14.6 14.6 0 0 0 381.5 60.0 A 14.6 14.6 0 0 0 410.8 60.0 A 14.6 14.6 0 0 0 440.0 60.0 A 15.0 15.0 0 0 0 440.0 90.0 A 15.0 15.0 0 0 0 440.0 120.0 A 15.0 15.0 0 0 0 440.0 150.0 A 15.0 15.0 0 0 0 440.0 180.0 A 15.0 15.0 0 0 0 440.0 210.0 A 15.0 15.0 0 0 0 440.0 240.0 A 15.0 15.0 0 0 0 440.0 270.0 A 15.0 15.0 0 0 0 440.0 300.0 A 15.0 15.0 0 0 0 440.0 330.0 A 15.0 15.0 0 0 0 440.0 360.0 A 15.0 15.0 0 0 0 440.0 390.0 A 15.0 15.0 0 0 0 440.0 420.0 A 15.0 15.0 0 0 0 440.0 450.0 A 15.0 15.0 0 0 0 440.0 480.0 A 15.0 15.0 0 0 0 440.0 510.0 A 15.0 15.0 0 0 0 440.0 540.0 A 15.0 15.0 0 0 0 440.0 570.0 A 15.0 15.0 0 0 0 440.0 600.0 A 14.6 14.6 0 0 0 410.8 600.0 A 14.6 14.6 0 0 0 381.5 600.0 A 14.6 14.6 0 0 0 352.3 600.0 A 14.6 14.6 0 0 0 323.1 600.0 A 14.6 14.6 0 0 0 293.8 600.0 A 14.6 14.6 0 0 0 264.6 600.0 A 14.6 14.6 0 0 0 235.4 600.0 A 14.6 14.6 0 0 0 206.2 600.0 A 14.6 14.6 0 0 0 176.9 600.0 A 14.6 14.6 0 0 0 147.7 600.0 A 14.6 14.6 0 0 0 118.5 600.0 A 14.6 14.6 0 0 0 89.2 600.0 A 14.6 14.6 0 0 0 60.0 600.0 A 15.0 15.0 0 0 0 60.0 570.0 A 15.0 15.0 0 0 0 60.0 540.0 A 15.0 15.0 0 0 0 60.0 510.0 A 15.0 15.0 0 0 0 60.0 480.0 A 15.0 15.0 0 0 0 60.0 450.0 A 15.0 15.0 0 0 0 60.0 420.0 A 15.0 15.0 0 0 0 60.0 390.0 A 15.0 15.0 0 0 0 60.0 360.0 A 15.0 15.0 0 0 0 60.0 330.0 A 15.0 15.0 0 0 0 60.0 300.0 A 15.0 15.0 0 0 0 60.0 270.0 A 15.0 15.0 0 0 0 60.0 240.0 A 15.0 15.0 0 0 0 60.0 210.0 A 15.0 15.0 0 0 0 60.0 180.0 A 15.0 15.0 0 0 0 60.0 150.0 A 15.0 15.0 0 0 0 60.0 120.0 A 15.0 15.0 0 0 0 60.0 90.0 A 15.0 15.0 0 0 0 60.0 60.0 Z"
-    transform="scale(0.772 0.833333)"
+    transform="scale(0.772 0.9)"
     fill="none"
     stroke="#a8d4c5"
     stroke-width="8"
@@ -111,7 +88,7 @@
   />
   <path
     d="M 60.0 60.0 A 14.6 14.6 0 0 0 89.2 60.0 A 14.6 14.6 0 0 0 118.5 60.0 A 14.6 14.6 0 0 0 147.7 60.0 A 14.6 14.6 0 0 0 176.9 60.0 A 14.6 14.6 0 0 0 206.2 60.0 A 14.6 14.6 0 0 0 235.4 60.0 A 14.6 14.6 0 0 0 264.6 60.0 A 14.6 14.6 0 0 0 293.8 60.0 A 14.6 14.6 0 0 0 323.1 60.0 A 14.6 14.6 0 0 0 352.3 60.0 A 14.6 14.6 0 0 0 381.5 60.0 A 14.6 14.6 0 0 0 410.8 60.0 A 14.6 14.6 0 0 0 440.0 60.0 A 15.0 15.0 0 0 0 440.0 90.0 A 15.0 15.0 0 0 0 440.0 120.0 A 15.0 15.0 0 0 0 440.0 150.0 A 15.0 15.0 0 0 0 440.0 180.0 A 15.0 15.0 0 0 0 440.0 210.0 A 15.0 15.0 0 0 0 440.0 240.0 A 15.0 15.0 0 0 0 440.0 270.0 A 15.0 15.0 0 0 0 440.0 300.0 A 15.0 15.0 0 0 0 440.0 330.0 A 15.0 15.0 0 0 0 440.0 360.0 A 15.0 15.0 0 0 0 440.0 390.0 A 15.0 15.0 0 0 0 440.0 420.0 A 15.0 15.0 0 0 0 440.0 450.0 A 15.0 15.0 0 0 0 440.0 480.0 A 15.0 15.0 0 0 0 440.0 510.0 A 15.0 15.0 0 0 0 440.0 540.0 A 15.0 15.0 0 0 0 440.0 570.0 A 15.0 15.0 0 0 0 440.0 600.0 A 14.6 14.6 0 0 0 410.8 600.0 A 14.6 14.6 0 0 0 381.5 600.0 A 14.6 14.6 0 0 0 352.3 600.0 A 14.6 14.6 0 0 0 323.1 600.0 A 14.6 14.6 0 0 0 293.8 600.0 A 14.6 14.6 0 0 0 264.6 600.0 A 14.6 14.6 0 0 0 235.4 600.0 A 14.6 14.6 0 0 0 206.2 600.0 A 14.6 14.6 0 0 0 176.9 600.0 A 14.6 14.6 0 0 0 147.7 600.0 A 14.6 14.6 0 0 0 118.5 600.0 A 14.6 14.6 0 0 0 89.2 600.0 A 14.6 14.6 0 0 0 60.0 600.0 A 15.0 15.0 0 0 0 60.0 570.0 A 15.0 15.0 0 0 0 60.0 540.0 A 15.0 15.0 0 0 0 60.0 510.0 A 15.0 15.0 0 0 0 60.0 480.0 A 15.0 15.0 0 0 0 60.0 450.0 A 15.0 15.0 0 0 0 60.0 420.0 A 15.0 15.0 0 0 0 60.0 390.0 A 15.0 15.0 0 0 0 60.0 360.0 A 15.0 15.0 0 0 0 60.0 330.0 A 15.0 15.0 0 0 0 60.0 300.0 A 15.0 15.0 0 0 0 60.0 270.0 A 15.0 15.0 0 0 0 60.0 240.0 A 15.0 15.0 0 0 0 60.0 210.0 A 15.0 15.0 0 0 0 60.0 180.0 A 15.0 15.0 0 0 0 60.0 150.0 A 15.0 15.0 0 0 0 60.0 120.0 A 15.0 15.0 0 0 0 60.0 90.0 A 15.0 15.0 0 0 0 60.0 60.0 Z"
-    transform="scale(0.772 0.833333)"
+    transform="scale(0.772 0.9)"
     fill="none"
     stroke="#4c8a75"
     stroke-width="5.5"
