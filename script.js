@@ -5,31 +5,51 @@ const song = document.getElementById("song");
 const openBtn = document.getElementById("openBtn");
 const helloImg = document.getElementById("helloImg");
 const envelopeName = document.getElementById("envelopeName");
+const rsvpLink = document.getElementById("rsvpLink");
 const decor = document.getElementById("decor");
 const soundToggle = document.getElementById("soundToggle");
 const replayBtn = document.getElementById("replayBtn");
 
 /* timeline (ms) - analysed track: 140 BPM, beat kicks ~14s */
 const T = {
-  hello: 14300,    // "HELLO?" bubble
-  invited: 15000,  // stomp lands on the beat
-  main: 16400,     // card reveal after the invited beat
+  hello: 14600,    // "HELLO?" bubble
+  invited: 15300,  // stomp lands on the beat
+  main: 16700,     // card reveal after the invited beat
 };
 const ENVELOPE_BEAT = 1180;
 const DEFAULT_ENVELOPE_NAME = "from Diana";
+const RSVP_NUMBER = "201016119915";
 let timers = [];
 const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 const at = (ms, fn) => timers.push(setTimeout(fn, ms));
 
-function getEnvelopeCopy() {
+function getGuestName() {
   const params = new URLSearchParams(window.location.search);
-  const rawName = params.get("for") || params.get("name") || params.get("guest");
-  const cleanName = rawName ? rawName.trim().replace(/\s+/g, " ") : "";
+  const guestId = params.get("f");
+  const guestMap = window.GUEST_NAME_MAP || {};
+  const rawName = guestId ? guestMap[guestId] : "";
+  return rawName ? rawName.trim().replace(/\s+/g, " ") : "";
+}
+
+function getEnvelopeCopy() {
+  const cleanName = getGuestName();
   return cleanName ? `for ${cleanName}` : DEFAULT_ENVELOPE_NAME;
+}
+
+function getRsvpHref() {
+  const guestName = getGuestName();
+  const message = guestName
+    ? `Hi Diana, this is ${guestName}. I confirm that I am coming.`
+    : "Hi Diana, I'd love to RSVP for your birthday at Camp Cafe.";
+  return `https://wa.me/${RSVP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 if (envelopeName) {
   envelopeName.textContent = getEnvelopeCopy();
+}
+
+if (rsvpLink) {
+  rsvpLink.href = getRsvpHref();
 }
 
 /* floating decorations - rising petals + softly twinkling sparkles */
