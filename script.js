@@ -23,12 +23,36 @@ let timers = [];
 const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 const at = (ms, fn) => timers.push(setTimeout(fn, ms));
 
-function getGuestName() {
+function cleanText(value) {
+  return value ? value.trim().replace(/\s+/g, " ") : "";
+}
+
+function getGuestToken() {
   const params = new URLSearchParams(window.location.search);
-  const guestId = params.get("f");
+  const keys = ["f", "for", "guest", "id", "name"];
+
+  // Support both the new numeric links and any older shared formats.
+  for (const key of keys) {
+    const value = cleanText(params.get(key) || "");
+    if (value) return value;
+  }
+
+  return "";
+}
+
+function getGuestName() {
+  const guestToken = getGuestToken();
   const guestMap = window.GUEST_NAME_MAP || {};
-  const rawName = guestId ? guestMap[guestId] : "";
-  return rawName ? rawName.trim().replace(/\s+/g, " ") : "";
+
+  if (!guestToken) return "";
+
+  const normalizedKey = /^\d+$/.test(guestToken)
+    ? String(parseInt(guestToken, 10))
+    : guestToken;
+  const rawName = guestMap[normalizedKey] || guestMap[guestToken];
+
+  if (rawName) return cleanText(rawName);
+  return /^\d+$/.test(guestToken) ? "" : guestToken;
 }
 
 function getEnvelopeCopy() {
